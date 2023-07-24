@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+<!-- 1. 클래스 등록 -->
+<bean id="sa1" class="com.sist.main4.Sawon"
+	p:sabun="1"
+	p:name="ㅎㄱㄷ"
+	p:dept="ㄱㄱㅂ"
+	p:job="ㄷㄹ"
+	p:pay="4200"
+	init-method="init"
+	destroy-method="destroy"
+/>
+
+<!-- init-method : 생성자 실행된 직후 호출되는 초기화 메서드 
+	 destroy-method : context를 닫을 때, 객체가 소멸 직전에 실행되는 호출되는 메서드
+-->
+
+<!--  가장 많이 사용되는 주입 -->
+<bean id="mc" class="com.sist.main4.MainClass"
+	p:sa-ref="sa1"
+/>
+
+<!-- 객체 생성과 동시에 값을 주입(DI)
+		멤버변수의 초기화
+		** 값 주입 방법 : 1. setXxx()
+					   2. 생성자
+		메소드 호출이 가능 => 객체 생성시 (init-method)
+						 객체 소멸시 (destroy-method)
+						 
+		
+
+ -->
+</beans>
