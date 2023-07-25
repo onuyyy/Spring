@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+<!-- vo 등록 -->
+<typeAliases>
+	<typeAlias type="com.sist.vo.SeoulLocationVO" alias="SeoulLocationVO"></typeAlias>
+	<typeAlias type="com.sist.vo.SeoulShopVO" alias="SeoulShopVO"></typeAlias>
+	<typeAlias type="com.sist.vo.SeoulNatureVO" alias="SeoulNatureVO"></typeAlias>	
+</typeAliases>	
+
+<!-- mapper.xml 등록 -->
+
+<mappers>
+	<mapper resource="com/sist/mapper/location-mapper.xml"></mapper>
+	<mapper resource="com/sist/mapper/shop-mapper.xml"></mapper>
+	<mapper resource="com/sist/mapper/nature-mapper.xml"></mapper>	
+</mappers>
+
+</configuration>
+
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+  <mapper namespace="com.sist.mapper.shop-mapper">
+ 	<select id="shopLocationListData" resultType="SeoulShopVO">
+ 		SELECT * FROM seoul_shop
+ 	</select>
+ 	<select id="shopDetailData" resultType="SeoulShopVO" parameterType="int">
+ 		SELECT * FROM seoul_shop
+ 		WHERE no=#{no}
+ 	</select>
+ </mapper>
