@@ -7,7 +7,6 @@
  
  <mapper namespace="com.sist.dao.student.student-mapper">
  
- 
  <!-- #{} = vo.getXxx() -->
  
  <!-- 목록 출력 -->

@@ -17,7 +17,7 @@ public class MainCLass {
 	public static void main(String[] args) {
 		
 		ApplicationContext app=new ClassPathXmlApplicationContext("app.xml");
-
 	}
-
 }
+
+

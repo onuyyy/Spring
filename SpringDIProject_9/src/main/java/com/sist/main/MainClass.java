@@ -3,7 +3,6 @@ package com.sist.main;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.util.*;
-
 import com.sist.dao2.*;
 
 public class MainClass {

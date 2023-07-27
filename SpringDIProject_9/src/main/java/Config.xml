@@ -6,8 +6,8 @@
  <!-- 
  	** configuration 태그 아래 쓸 수 있는 것들 => ? 붙은 것 필수 아님
  		- 주의할 점 : 아래 순서대로 태그 써야 함
- (properties?, settings?, typeAliases?, typeHandlers?, objectFactory?, objectWrapperFactory?, 
- reflectorFactory?, plugins?, environments?, databaseIdProvider?, mappers?)
+		 (properties?, settings?, typeAliases?, typeHandlers?, objectFactory?, objectWrapperFactory?, 
+		 reflectorFactory?, plugins?, environments?, databaseIdProvider?, mappers?)
   -->
   
  <configuration>
