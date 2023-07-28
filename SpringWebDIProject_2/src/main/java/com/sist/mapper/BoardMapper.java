@@ -1,8 +1,12 @@
 package com.sist.mapper;
 
 import com.sist.vo.*;
+
+import lombok.Delegate;
+
 import java.util.*;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -40,4 +44,26 @@ public interface BoardMapper {
 			+ "WHERE no=#{no}")
 	public BoardVO boardDetailData(int no);
 	
+	// 수정하기
+	@Select("SELECT no,name,subject,content "
+			+ "FROM springBoard "
+			+ "WHERE no=#{no}")
+	public BoardVO boardUpdateData(int no);
+	
+	@Select("SELECT pwd FROM springBoard "
+			+ "WHERE no=#{no}")
+	public String boardGetPassword(int no);
+	
+	@Update("UPDATE springBoard SET "
+			+ "name=#{name},subject=#{subject},content=#{content} "
+			+ "WHERE no=#{no}")
+	public void boardUpdate(BoardVO vo);
+	
+	@Delete("DELETE FROM springBoard "
+			+ "WHERE no=#{no}")
+	public void boardDelete(int no);
+	
+	
+	
+	// mapper에서만 매개변수를 하나씩!!!!! dao는 상관없음
 }
