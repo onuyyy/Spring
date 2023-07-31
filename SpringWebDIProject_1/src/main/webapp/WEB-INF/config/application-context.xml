@@ -31,11 +31,10 @@
  	 ==> /food/category.jsp
  	 	접두어와 확장자를 제거해주는 코딩
   -->
-<bean id="viewResolver"
-  	  class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-  	  p:prefix="/"
-  	  p:suffix=".jsp"
-/>
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+        p:prefix="/"
+        p:suffix=".jsp"
+    />
 
 
 </beans>
