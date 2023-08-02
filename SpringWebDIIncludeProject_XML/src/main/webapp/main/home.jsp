@@ -34,5 +34,20 @@
 		 </div>
 	</c:forEach>
 </div>
+<div style="height:10px">
+	<h3>최근 방문 맛집</h3>
+	<hr>
+	<div class="row">
+		<c:forEach var="cvo" items="${cList }">
+			<div class="col-md-2">
+				  <div class="thumbnail">
+					    <a href="#">
+					      <img src="${cvo.poster }" alt="Lights" style="width:100%">
+					    </a>
+				  </div>
+			 </div>
+		</c:forEach>
+	</div>
+</div>
 </body>
 </html>

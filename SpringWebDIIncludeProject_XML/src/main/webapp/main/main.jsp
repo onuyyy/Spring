@@ -25,5 +25,17 @@
 	<jsp:include page="${main_jsp }"></jsp:include>
 </div>
 
+<!-- footer -->
+<div class="container">
+	<div class="col-sm-4">
+		
+	</div>
+	<div class="col-sm-4">
+		
+	</div>
+	<div class="col-sm-4">
+		
+	</div>
+</div>
 </body>
 </html>

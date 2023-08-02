@@ -1,6 +1,10 @@
 package com.sist.web;
 
 import java.util.*;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 import com.sist.dao.*;
 import com.sist.vo.*;
 
@@ -81,7 +85,7 @@ public class MainController {
 	// 사용자 요청시 처리
 	// 첫 화면
 	@GetMapping("main/main.do")
-	public String main_main(String cno,Model model) {
+	public String main_main(String cno,Model model,HttpServletRequest request) {
 						//			   ------------ 내가 사용자에게 보낼 값
 						//  ---------- 사용자가 보내준 값
 		// default 값 설정 : cno int로 안 받는 이유 => int는 null값이 없어서 String으로 받아야 함
@@ -92,9 +96,22 @@ public class MainController {
 		map.put("cno", Integer.parseInt(cno));
 		List<CategoryVO> list=dao.foodCategoryData(map);
 		
+		Cookie[] cookies=request.getCookies();
+		List<FoodVO> cList=new ArrayList<FoodVO>();
+		if(cookies!=null) {
+			for(int i=cookies.length-1;i>=0;i--) {
+				if(cookies[i].getName().startsWith("food_")) {
+					String no=cookies[i].getValue();
+					FoodVO vo=dao.foodDetailData(Integer.parseInt(no));
+					cList.add(vo);
+				}
+			}
+		}
+		model.addAttribute("cList", cList);
 		model.addAttribute("list", list);
 		model.addAttribute("main_jsp", "../main/home.jsp");
 		return "main/main";
 	}
+	
 	
 }

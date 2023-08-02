@@ -36,10 +36,23 @@
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
+ 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/config/application-*.xml</param-value>
+		</init-param> 
+		
+<!--
+		Spring 5 version java로만 코딩할 때 설정 (xml x)
+		
+ 		<init-param>
+			<param-name>contextClass</param-name>
+			<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
 		</init-param>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>com.sist.config.SpringConfig</param-value>
+		</init-param> -->
+		
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 		

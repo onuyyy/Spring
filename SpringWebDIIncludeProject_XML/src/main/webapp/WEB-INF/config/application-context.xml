@@ -13,6 +13,19 @@
 <!-- AOP -->
 <aop:aspectj-autoproxy/>
 
+
+<mvc:annotation-driven>
+    <mvc:message-converters>
+        <!-- @ResponseBody로 String 처리할때 한글처리 -->
+        <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+            <property name="supportedMediaTypes">
+                <list>
+                    <value>text/html;charset=UTF-8</value>
+                </list>
+            </property>
+        </bean>
+    </mvc:message-converters>
+</mvc:annotation-driven>
 <!-- 사용자 정의 클래스 등록 : 아래 경로로 시작하는 모든 클래스에 메모리 할당 
 		클래스 선별
 			1) Model : HandlerMapping에 의해서 찾기 => 스프링에서 메모리 할당 요청
@@ -57,3 +70,5 @@
 <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
 />
 </beans>
+
+

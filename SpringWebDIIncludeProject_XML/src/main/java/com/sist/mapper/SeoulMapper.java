@@ -41,7 +41,7 @@ public interface SeoulMapper {
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<SeoulNatureVO> seoulNatureListData(Map map);
 	
-	@Select("SELECT CEIL(COUNT(*)/.0) FROM seoul_nature")
+	@Select("SELECT CEIL(COUNT(*)/12.0) FROM seoul_nature")
 	public int seoulNatureTotalPage();
 	
 }
