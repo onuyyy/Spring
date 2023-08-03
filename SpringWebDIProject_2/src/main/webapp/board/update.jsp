@@ -20,7 +20,7 @@
   <div class="container">
 	<h1 class="text-center">수정하기</h1>
     <div class="row">
-     <form method="post" action="update_ok.do">
+     <form method="post" action="../board/update_ok.do">
       <table class="table">
         <tr>
           <th width=20% class="text-right">이름</th>

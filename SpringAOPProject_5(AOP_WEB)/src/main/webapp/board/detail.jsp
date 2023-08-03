@@ -43,7 +43,7 @@
 			        <tr>
 			          <td colspan="4" class="text-right">
 			            <a href="../board/reply.do?pno=${vo.no }" class="btn btn-xs btn-warning">답변</a>
-			            <a href="../baordupdate.do?no=${vo.no }" class="btn btn-xs btn-info">수정</a>
+			            <a href="../board/update.do?no=${vo.no }" class="btn btn-xs btn-info">수정</a>
 			            <a href="../board/delete.do?no=${vo.no }" class="btn btn-xs btn-success">삭제</a>
 			            <a href="../board/list.do" class="btn btn-xs btn-">목록</a>
 			          </td>

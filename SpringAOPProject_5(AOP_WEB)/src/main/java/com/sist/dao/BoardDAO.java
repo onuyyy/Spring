@@ -3,6 +3,7 @@ package com.sist.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -86,11 +87,80 @@ public class BoardDAO {
 		BoardVO pvo=mapper.boardParentInfoData(root);
 		mapper.baordGroupStepIncrement(pvo);
 		vo.setGroup_id(pvo.getGroup_id());
-		vo.setGroup_step(pvo.getGroup_step());
+		vo.setGroup_step(pvo.getGroup_step()+1);
 		vo.setGroup_tab(pvo.getGroup_tab()+1);
 		vo.setRoot(root);
 		mapper.boardReplyInsert(vo);
 		mapper.boardDepthIncrement(root);
 		
 	}
+	
+	public BoardVO boardUpdateData(int no) {
+		return mapper.boardDetailData(no);
+	}
+
+//	@Select("SELECT pwd FROM springReplyBoard "
+//			+ "WHERE no=#{no}")
+//	public String boardGetPassword(int no);
+//	
+//	@Update("UPDATE springReplyBoard SET "
+//			+ "name=#{name},subject=#{subject},content=#{content} "
+//			+ "WHERE no=#{no}")
+	public boolean boardUpdate(BoardVO vo) {
+		
+		boolean bCheck=false;
+		String db_pwd=mapper.boardGetPassword(vo.getNo());
+		if(db_pwd.equals(vo.getPwd())) {
+			bCheck=true;
+			mapper.boardUpdate(vo);
+		}
+		return bCheck;
+	}
+
+//	@Select("SELECT root,depth FROM springReplyBoard "
+//			+ "WHERE no=#{no}")
+//	public BoardVO boardInfoData(int no);
+//	
+//	@Update("UPDATE springReplyBoard SET "
+//			+ "subject='관리자가 삭제한 게시물입니다.',content='관리자가 삭제한 게시물입니다.' "
+//			+ "WHERE no=#{no}")
+//	public void boardSubjectUpdate(int no);
+//	
+//	@Delete("DELETE FROM springReplyBoard "
+//			+ "WHERE no=#{no}")
+//	public void boardDelete(int no);
+//	
+//	@Update("UPDATE springReplyBoard SET "
+//			+ "depth=depth-1 "
+//			+ "WHERE no=#{no}")
+	@Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
+	public boolean boardDelete(int no,String pwd) {
+		boolean bCheck=false;
+		
+		// pwd 읽기
+		String db_pwd=mapper.boardGetPassword(no);
+		if(db_pwd.equals(pwd)) {
+			bCheck=true;
+			// 삭제할 수 있는 게시물인지 확인=depth
+			BoardVO vo=mapper.boardInfoData(no);
+			if(vo.getDepth()==0) {
+				mapper.boardDelete(no);
+			} else {
+				mapper.boardSubjectUpdate(no);
+			}
+			mapper.boardDepthDecrement(no);
+		} else {
+			
+		}
+		
+		return bCheck;
+	}
+	
+	// 다중 쿼리 find
+	public List<BoardVO> boardFindDate(Map map) {
+		return mapper.boardFindDate(map);
+	}
+	
 }
+
+

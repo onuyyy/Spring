@@ -2,6 +2,7 @@ package com.sist.mapper;
 
 import java.util.*;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -62,10 +63,65 @@ public interface BoardMapper {
 	        + "WHERE no=#{no}")
 	public void boardDepthIncrement(int no);
 
+	@Select("SELECT pwd FROM springReplyBoard "
+			+ "WHERE no=#{no}")
+	public String boardGetPassword(int no);
+	
+	@Update("UPDATE springReplyBoard SET "
+			+ "name=#{name},subject=#{subject},content=#{content} "
+			+ "WHERE no=#{no}")
+	public void boardUpdate(BoardVO vo);
+	
+	
+	// 삭제 => 트랜잭션 사용 (데이터가 많아서 한 번에 모아서 처리)
+	@Select("SELECT root,depth FROM springReplyBoard "
+			+ "WHERE no=#{no}")
+	public BoardVO boardInfoData(int no);
+	
+	@Update("UPDATE springReplyBoard SET "
+			+ "subject='관리자가 삭제한 게시물입니다.',content='관리자가 삭제한 게시물입니다.' "
+			+ "WHERE no=#{no}")
+	public void boardSubjectUpdate(int no);
+	
+	@Delete("DELETE FROM springReplyBoard "
+			+ "WHERE no=#{no}")
+	public void boardDelete(int no);
+	
+	@Update("UPDATE springReplyBoard SET "
+			+ "depth=depth-1 "
+			+ "WHERE no=#{no}")
+	public void boardDepthDecrement(int no);
+	
 	
 	// 삭제 (트랜잭션) => 스프링 AOP
 	
 	
 	// 다중 검색 (동적 쿼리 이용)
+	@Select({
+		"<script>"
+		+"SELECT no,subject,name,TO_CHAR(regdate,'YYYY-MM-DD') as dbday, hit "
+		+ "FROM springReplyBoard "
+		+ "WHERE "
+		+ "<trim prefixOverrides=\"OR\">"
+			+ "<foreach collection=\"fsArr\" item=\"fd\">"
+				+ "<trim prefix=\"OR\">"
+					+ "<choose>"
+					+ "<when test=\"fd=='N'.toString()\">"
+						+ "name LIKE '%'||#{ss}||'%'"
+					+ "</when>"
+						+ "<when test=\"fd=='S'.toString()\">"
+						+ "subject LIKE '%'||#{ss}||'%'"
+					+ "</when>"
+						+ "<when test=\"fd=='C'.toString()\">"
+						+ "content LIKE '%'||#{ss}||'%'"
+					+ "</when>"
+					+ "</choose>"
+				+ "</trim>"
+			+ "</foreach>"
+		+ "</trim>"
+		+"</script>"
+	})
+	public List<BoardVO> boardFindDate(Map map);
+	
 	
 }
