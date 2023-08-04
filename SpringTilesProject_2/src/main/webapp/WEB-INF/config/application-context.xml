@@ -5,42 +5,36 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
-<!-- aop -->
-<!-- AOP를 어노테이션 적용 -->
-<aop:aspectj-autoproxy/>	
-
-
-<!-- 사용자 정의 클래스 등록 -->
-<context:component-scan base-package="com.sist.*"/>
-
-
-<!-- jsp 찾기 ViewResolver -->
-<bean id="viewResolver" 
-	class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-	p:prefix="/"
-	p:suffix=".jsp"
-/>
-
-<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer"
-      p:definitions="/WEB-INF/tiles.xml"
-   />
-   
-   <bean id="tilesResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver"
-      p:viewClass="org.springframework.web.servlet.view.tiles3.TilesView"
-      p:order="0"
-   />
-
-
-<!-- 
-	DispatcherServlet : 요청을 받아서 응답
-	HandlerMapping : model class를 찾는다 => GetMapping, PostMapping
-	ViewResolver : jsp 찾는다 => 경로명, 확장자 지정
- -->
-
-
+	<!-- AOP -->
+	<aop:aspectj-autoproxy/>
+	
+	<!-- 사용자 정의 클래스 등록 -->
+	<context:component-scan base-package="com.sist.*"/>
+	
+	<!-- ViewResolver 등록 -->
+	<!-- 
+		DispatcherServlet : 요청 → 응답
+		HandlerMapping : Model 클래스 찾아줌 → @GetMapping, @PostMapping...
+		ViewResolver : JSP 찾아줌 → 경로명과 확장자(스프링이 자바 전용이 아니기 때문에)를 지정해줘야함
+	-->
+	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer"
+		p:definitions="/WEB-INF/tiles.xml"
+	/>
+	
+	<bean id="tilesResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver"
+		p:viewClass="org.springframework.web.servlet.view.tiles3.TilesView"
+		p:order="0"
+	/>
+	
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:prefix="/"
+		p:suffix=".jsp"
+		p:order="1"
+	/>
+	
 </beans>

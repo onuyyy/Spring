@@ -6,12 +6,10 @@
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
- 		<init-param>
+		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/config/application-*.xml</param-value>
-		</init-param> 
-		
-
+		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 		
@@ -20,8 +18,6 @@
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 	
-	<!-- 한글 변환 등록 -->
-
 	<filter>
 	  <filter-name>encodingFilter</filter-name>
 	  <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -30,7 +26,6 @@
 	    <param-value>UTF-8</param-value>
 	  </init-param>
 	</filter>
-
 	
 	<filter-mapping>
 	  <filter-name>encodingFilter</filter-name>

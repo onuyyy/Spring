@@ -5,22 +5,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../shadow/css/shadowbox.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script type="text/javascript" src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <style type="text/css">
 .row{
   margin: 0px auto;
   width:100%;
 }
 </style>
-
+<script type="text/javascript" src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-$(function(){
-	$('#postBtn').click(function(){
+$(function() {
+	$('#postBtn').click(function() {
 		new daum.Postcode({
-			oncomplete:function(data) {
+			oncomplete:function(data)
+			{
 				$('#post').val(data.zonecode)
 				$('#addr1').val(data.address)
 			}
@@ -28,13 +27,9 @@ $(function(){
 	})
 })
 </script>
-
-
-
 </head>
 <body>
-
-  <div class="wrapper row3">
+ <div class="wrapper row3">
    <main class="container clear">
     <h2 class="sectiontitle">회원가입</h2>
     <div class="row">
@@ -43,9 +38,8 @@ $(function(){
         <tr>
          <th class="text-right" width=10%>ID</th>
          <td width=90% class="inline">
-          <input type=text name=id id=id size=20 class="input-sm"
-           readonly>
-          <input type=button value="중복체크" class="btn btn-sm btn-success" id="idCheckBtn">
+          <input type=text name=id id=id size=20 class="input-sm" readonly>
+          <input type=button value="중복체크" class="btn btn-sm btn-danger" id="idCheckBtn">
          </td>
         </tr>
         
@@ -83,8 +77,7 @@ $(function(){
          <th class="text-right" width=10%>이메일</th>
          <td width=90% class="inline">
           <input type=text name=email id=email size=55 class="input-sm">
-          <input type=button value="이메일체크" 
-            class="btn btn-sm btn-danger" id="emailBtn">
+          <input type=button value="이메일체크" class="btn btn-sm btn-danger" id="emailBtn">
          </td>
         </tr>
         
@@ -92,17 +85,14 @@ $(function(){
          <th class="text-right" width=10%>우편번호</th>
          <td width=90% class="inline">
           <input type=text name=post id=post size=10 class="input-sm">
-          <input type=button value="우편번호검색" class="btn btn-sm btn-info"
-            id="postBtn">
+          <input type=button value="우편번호검색" class="btn btn-sm btn-danger" id="postBtn">
          </td>
         </tr>
         
         <tr>
          <th class="text-right" width=10%>주소</th>
          <td width=90% class="inline">
-          <input type=text name=addr1 id=addr1 size=55 class="input-sm"
-           readonly
-          >
+          <input type=text name=addr1 id=addr1 size=55 class="input-sm" readonly>
          </td>
         </tr>
         
@@ -120,8 +110,7 @@ $(function(){
            <option>010</option>
           </select>
           <input type=text name=phone id=phone size=12 class="input-sm">
-          <input type=button value="전화체크" 
-            class="btn btn-sm btn-warning" id="phoneBtn">
+          <input type=button value="전화체크" class="btn btn-sm btn-danger" id="phoneBtn">
          </td>
         </tr> 
        
@@ -134,10 +123,8 @@ $(function(){
         
         <tr>
           <td colspan="2" class="text-center">
-           <input type="button" value="회원가입" 
-             class="btn btn-success btn-sm" id="joinBtn">
-           <input type=button value="취소"
-             class="btn btn-info btn-sm" onclick="javascript:history.back()">
+           <input type="button" value="회원가입" class="btn btn-danger btn-sm" id="joinBtn">
+           <input type=button value="취소" class="btn btn-defalut btn-sm" onclick="javascript:history.back()">
           </td>
         </tr>
       </table>

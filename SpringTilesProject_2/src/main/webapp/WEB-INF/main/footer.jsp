@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 <div class="wrapper row4">
   <footer id="footer" class="clear"> 
     <!-- ################################################################################################ -->
